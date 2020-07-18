@@ -203,7 +203,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69316913
 GameObject:
@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 69316914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1 (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 135130125}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 140379368}
   - component: {fileID: 140379369}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 180668388}
   - component: {fileID: 180668389}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,11 +513,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196308710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.6, y: -0.11, z: 0}
+  m_LocalPosition: {x: -8.6, y: -0.11, z: 0.94}
   m_LocalScale: {x: 0.5827333, y: 0.5827333, z: 0.5827333}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &202342182
 GameObject:
@@ -529,7 +529,7 @@ GameObject:
   m_Component:
   - component: {fileID: 202342183}
   - component: {fileID: 202342184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,8 +567,8 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: -8.985064, y: 1.4927384}
-  - {x: -7.8487477, y: 0.5590309}
-  - {x: 1.1370645, y: 0.5030036}
+  - {x: -7.7929254, y: 0.5279041}
+  - {x: 1.1508527, y: 0.48921204}
   - {x: 3.9240294, y: 1.4826632}
   - {x: 9.9071045, y: 1.4907846}
   - {x: 9.927155, y: 3.4909115}
@@ -576,7 +576,16 @@ EdgeCollider2D:
   - {x: 11.950388, y: 2.8283334}
   - {x: 13.325193, y: 2.8294475}
   - {x: 13.311321, y: 1.5035365}
-  - {x: 18.700195, y: 1.5011296}
+  - {x: 18.714859, y: 1.4782393}
+  - {x: 18.718903, y: 0.1753354}
+  - {x: 4.0008373, y: 0.16355902}
+  - {x: 4.0121355, y: -0.4525963}
+  - {x: 1.1239555, y: -0.506462}
+  - {x: 1.1572614, y: -0.80286705}
+  - {x: -7.792768, y: -0.7689246}
+  - {x: -7.8009105, y: -0.47799385}
+  - {x: -9.002884, y: -0.4836303}
+  - {x: -9.055222, y: 1.5174749}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -591,7 +600,7 @@ GameObject:
   m_Component:
   - component: {fileID: 225443115}
   - component: {fileID: 225443116}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -673,7 +682,7 @@ GameObject:
   m_Component:
   - component: {fileID: 238216082}
   - component: {fileID: 238216083}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -755,7 +764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 241956605}
   - component: {fileID: 241956606}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -837,7 +846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 251286395}
   - component: {fileID: 251286396}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -919,7 +928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 264128375}
   - component: {fileID: 264128376}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1001,7 +1010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338260167}
   - component: {fileID: 338260168}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1082,7 +1091,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 371232099}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1116,7 +1125,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 411832418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1150,7 +1159,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 447493831}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1 (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1184,7 +1193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 453845396}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1 (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1219,7 +1228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 457920357}
   - component: {fileID: 457920358}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1399,7 +1408,7 @@ GameObject:
   m_Component:
   - component: {fileID: 519797520}
   - component: {fileID: 519797521}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1414,7 +1423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519797519}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17248178, y: -0.44778132, z: 29.86}
+  m_LocalPosition: {x: 0.17248178, y: -0.44778132, z: 30.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1383002619}
@@ -1551,7 +1560,7 @@ Transform:
   m_LocalScale: {x: 1.2541, y: 1.2541, z: 1.2541}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &650700375
 GameObject:
@@ -1563,7 +1572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 650700376}
   - component: {fileID: 650700377}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1645,7 +1654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 676429153}
   - component: {fileID: 676429154}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1727,7 +1736,7 @@ GameObject:
   m_Component:
   - component: {fileID: 688795320}
   - component: {fileID: 688795321}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1809,7 +1818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 690443141}
   - component: {fileID: 690443142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1891,7 +1900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 759512198}
   - component: {fileID: 759512199}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1906,7 +1915,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 759512197}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.81751823, y: -0.44778132, z: 29.86}
+  m_LocalPosition: {x: -0.81751823, y: -0.44778132, z: 30.800001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1383002619}
@@ -1973,7 +1982,7 @@ GameObject:
   m_Component:
   - component: {fileID: 767328350}
   - component: {fileID: 767328351}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2055,7 +2064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 816386077}
   - component: {fileID: 816386078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2137,7 +2146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 886852009}
   - component: {fileID: 886852010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2218,7 +2227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 915838946}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2233,7 +2242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 915838945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 135130125}
@@ -2257,7 +2266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 934763420}
   - component: {fileID: 934763421}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2359,7 +2368,7 @@ Transform:
   - {fileID: 202342183}
   - {fileID: 915838946}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1037008574
 GameObject:
@@ -2371,7 +2380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1037008575}
   - component: {fileID: 1037008576}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2386,7 +2395,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037008574}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8245182, y: -0.7965348, z: 30.36}
+  m_LocalPosition: {x: -1.8245182, y: -0.7965348, z: 31.300001}
   m_LocalScale: {x: 2.9841096, y: 0.77495, z: 1}
   m_Children: []
   m_Father: {fileID: 1383002619}
@@ -2453,7 +2462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1046124398}
   - component: {fileID: 1046124399}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2535,7 +2544,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1047597797}
   - component: {fileID: 1047597798}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2617,7 +2626,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1136948376}
   - component: {fileID: 1136948377}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2769,7 +2778,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1214589238
 GameObject:
@@ -2781,7 +2790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1214589239}
   - component: {fileID: 1214589240}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2863,7 +2872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1319489008}
   - component: {fileID: 1319489009}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2944,7 +2953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1383002619}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2966,89 +2975,8 @@ Transform:
   - {fileID: 759512198}
   - {fileID: 519797520}
   - {fileID: 1037008575}
+  - {fileID: 1988194582}
   m_Father: {fileID: 915838946}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1448756514
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1448756516}
-  - component: {fileID: 1448756515}
-  m_Layer: 0
-  m_Name: BackRound
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &1448756515
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448756514}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ebbd2ccd3ddd324d8a079c8ed889926, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 2.94, y: 1.71}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1448756516
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1448756514}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: -0.14, z: 0}
-  m_LocalScale: {x: 7.6020856, y: 6.1431, z: 6.1431}
-  m_Children: []
-  m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1471445709
@@ -3060,12 +2988,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1471445710}
-  - component: {fileID: 1471445712}
   - component: {fileID: 1471445711}
+  - component: {fileID: 1471445712}
   - component: {fileID: 1471445713}
   - component: {fileID: 1471445714}
   - component: {fileID: 1471445715}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3081,10 +3009,10 @@ Transform:
   m_GameObject: {fileID: 1471445709}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.91, y: 0.43, z: -0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1216679, y: 1.1216679, z: 1.1216679}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1471445711
 MonoBehaviour:
@@ -3098,7 +3026,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c6b48c768971d47bc44ff606e4f66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  platformsLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
   speed: 1.2
+  jumpVelocity: 18
 --- !u!212 &1471445712
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3210,11 +3142,11 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!1 &1477454265
 GameObject:
@@ -3225,7 +3157,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1477454266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1 (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3330,7 +3262,7 @@ Transform:
   m_LocalScale: {x: 1.2043749, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1568261518
 GameObject:
@@ -3342,7 +3274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1568261519}
   - component: {fileID: 1568261520}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3494,7 +3426,7 @@ Transform:
   m_LocalScale: {x: 1.4, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1645690396
 GameObject:
@@ -3506,7 +3438,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1645690397}
   - component: {fileID: 1645690398}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3588,7 +3520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1674148387}
   - component: {fileID: 1674148388}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3752,7 +3684,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1728505044}
   - component: {fileID: 1728505045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3834,7 +3766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1730966368}
   - component: {fileID: 1730966369}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3916,7 +3848,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1912328907}
   - component: {fileID: 1912328908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground C B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3931,7 +3863,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912328906}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8159323, y: -0.44778132, z: 29.86}
+  m_LocalPosition: {x: -1.8159323, y: -0.44778132, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1383002619}
@@ -3944,6 +3876,88 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912328906}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300040, guid: bb35af95735851440927571ef230221b, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!1 &1988194581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1988194582}
+  - component: {fileID: 1988194583}
+  m_Layer: 8
+  m_Name: TX Tileset Ground C B (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1988194582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988194581}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.82, y: -0.44778132, z: 30.800001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1383002619}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1988194583
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988194581}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -4068,7 +4082,7 @@ Transform:
   m_LocalScale: {x: 1.4903, y: 1.4903, z: 1.4903}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2080850117
 GameObject:
@@ -4080,7 +4094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2080850118}
   - component: {fileID: 2080850119}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TX Tileset Ground B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
