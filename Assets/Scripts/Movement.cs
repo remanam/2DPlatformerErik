@@ -12,10 +12,15 @@ public class Movement : MonoBehaviour
 
     public float speed = 0.1f;
     public float jumpVelocity = 5f;
+    public float climbVelocity = 2f;
     
     private bool isRunning;
     private bool isJumping;
     private bool isRotated;
+    private bool canClimb;
+
+    private float oldMass;
+    private float oldGravity;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -29,6 +34,9 @@ public class Movement : MonoBehaviour
         isRotated = false;
         anim = GetComponent<Animator>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
+
+        oldGravity = rb.gravityScale;
+        oldMass = rb.mass;
 
     }
     void FixedUpdate()
@@ -64,8 +72,29 @@ public class Movement : MonoBehaviour
         {
             isRunning = false;
             anim.SetBool("isRunning", isRunning);
-            //anim.Play("idle");
         }
+
+
+
+
+        if (canClimb)
+        {
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                Debug.Log("Going Up");
+
+                rb.gravityScale = 0;
+                rb.mass = 0;
+                transform.position = new Vector3(transform.position.x, transform.position.y + speed * 0.1f, transform.position.z);
+            }
+
+        }
+
+
+
+
+
 
     }
 
@@ -75,19 +104,53 @@ public class Movement : MonoBehaviour
         if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = Vector2.up * jumpVelocity;
-            anim.SetBool("isJumping", true);
+
         }
-        else
-            anim.SetBool("isJumping", false);
 
         bool isGrounded()
         {
             RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center,
                 boxCollider2D.bounds.size, 0f, Vector2.down, .1f, platformsLayerMask);
-            Debug.Log(raycastHit2d.collider);
-            Debug.DrawRay(transform.position, Vector3.down * 2, Color.green);
+            // Debug.Log(raycastHit2d.collider);
+            //Debug.DrawRay(transform.position, Vector3.down * 2, Color.green);
             return raycastHit2d.collider != null;
         }
 
+
+        if (!isGrounded())
+        {
+            anim.SetBool("isJumping", true);
+        }
+        else
+            anim.SetBool("isJumping", false);
+
+
     }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+
+
+
+
+        if (collision.gameObject.tag == "Stairs")
+        {
+            canClimb = true;
+            Debug.Log("Entered Stairs");
+            Debug.Log(canClimb);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        canClimb = false;
+        Debug.Log("Exited Stairs");
+        Debug.Log(canClimb);
+
+        rb.gravityScale = oldGravity;
+        rb.mass = oldMass;
+    }
+
 }
