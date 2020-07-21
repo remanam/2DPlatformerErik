@@ -10,7 +10,8 @@ public class PlayScript : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+            Debug.Log("Mouse Clicked");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("SampleScene");
         }
         
     }
