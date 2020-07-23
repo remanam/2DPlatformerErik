@@ -11,10 +11,12 @@ public class Movement : MonoBehaviour {
 
     public float speed = 0.1f;
     public float jumpVelocity = 5f;
-    public float climbVelocity = 2f;
+    public float climbSpeed = 2f;
 
     private bool isRunning;
     private bool isJumping;
+    private bool isAtacking;
+
     private bool isRotated;
     private bool canClimb;
 
@@ -35,6 +37,7 @@ public class Movement : MonoBehaviour {
     public GameObject leftButton;
     public GameObject jumpButton;
     public GameObject climbButton;
+    public GameObject attackButton;
 
 
 
@@ -51,7 +54,7 @@ public class Movement : MonoBehaviour {
         oldMass = rb.mass;
 
         // Set climbButtonFalseByDefault
-        climbButton.GetComponent<ClimbuttonHandler>().gameObject.SetActive(false);
+        climbButton.GetComponent<ClimbuttonHandler>().gameObject.SetActive(true);
 
     }
 
@@ -63,18 +66,18 @@ public class Movement : MonoBehaviour {
 
         left = leftButton.GetComponent<LeftButtonHandler>().isMovingLeft;
         
-        climb = climbButton.GetComponent<ClimbuttonHandler>().isClimb;
+        
         
 
 
         //if (Input.GetKey(KeyCode.D))
-        if (right)
+        if (right || Input.GetKey(KeyCode.D))
             {
             moveRight();
 
         }
         //if (Input.GetKey(KeyCode.A))
-        else if (left)  {
+        else if (left || Input.GetKey(KeyCode.A))  {
 
             moveLeft(); //move left function
         }
@@ -84,39 +87,39 @@ public class Movement : MonoBehaviour {
             anim.SetBool("isRunning", isRunning);
         }
 
+        if (attackButton.GetComponent<AttackButtonHandler>().isAttacking == true) {
+            isAtacking = true;
+            anim.SetBool("isAtacking", isAtacking);
+        }
+        else {
+            isAtacking = false;
+            anim.SetBool("isAtacking", isAtacking);
+        }
 
-        if (canClimb)
+
+        if (canClimb && climbButton.GetComponent<ClimbuttonHandler>().isClimb)
         {
-
-            if (climb && climbButton.GetComponent<ClimbuttonHandler>().gameObject.activeSelf == true) // if button climb pressed
-            {
+                Debug.Log(climbButton.GetComponent<ClimbuttonHandler>().isClimb);
                 Debug.Log("Going Up");
 
                 rb.gravityScale = 0;
                 rb.mass = 0;
                 transform.position = new Vector3(transform.position.x, transform.position.y + speed * 0.1f, transform.position.z);
+
             }
             else {
                  rb.gravityScale = oldGravity;
                  rb.mass = oldMass;
             }
 
-        }
-
-
-
-
-
-
     }
 
     private void Update()
     {
         jump = jumpButton.GetComponent<JumpButtonHandler>().isJump;
+      
 
-        
-
-        if (isGrounded() && jump)
+        if ((isGrounded() && jump) || (isGrounded() && Input.GetKeyDown(KeyCode.Space)))
         {
 
             rb.velocity = Vector2.up * jumpVelocity;
@@ -132,7 +135,6 @@ public class Movement : MonoBehaviour {
             return raycastHit2d.collider != null;
         }
 
-
         if (!isGrounded())
         {
             anim.SetBool("isJumping", true);
@@ -140,18 +142,18 @@ public class Movement : MonoBehaviour {
         else
             anim.SetBool("isJumping", false);
 
-
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(false);
- 
+        //jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(false);
+       // climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(true);
 
+        
         if (collision.gameObject.tag == "Stairs"  )
         {
-            climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(true);
+            
             canClimb = true;
             Debug.Log("Entered Stairs");
             Debug.Log(canClimb);
@@ -160,9 +162,11 @@ public class Movement : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(true);
-        climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(false);
+        //jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(true);
+        //climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(false);
+
         //climbButton.GetComponent<ClimbuttonHandler>().gameObject.SetActive(false);
+        
         canClimb = false;
         Debug.Log("Exited Stairs");
         Debug.Log(canClimb);

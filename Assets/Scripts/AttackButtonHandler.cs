@@ -2,32 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class ClimbuttonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
-
+public class AttackButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     public void OnPointerDown(PointerEventData eventData)
     {
-        isClimb = true;
+        isAttacking = true;
+        Debug.Log("AttackButton pressed");
     }
-    
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        isClimb = false;
-        Debug.Log("Climb Button released!");
-        Debug.Log(isClimb);
+        isAttacking = false;
+        Debug.Log("AttackButton released");
     }
 
-    public bool isClimb = false;
-
+    public bool isAttacking = false;
     public GameObject _object;
-    public Button btn;
-
-    
-
-
     void Update()
     {
+        
     }
 }
