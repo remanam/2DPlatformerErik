@@ -1,17 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class QuitScript : MonoBehaviour
 {
 
+    public Button yourButton;
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        if (Input.GetMouseButtonDown(0)) {
-            Debug.Log("Quit Mouse Clicked");
-            Application.Quit();
-        }
+        Button btn = yourButton.GetComponent<Button>();
+        btn.onClick.AddListener(OnClick);
+    }
+
+    void OnClick()
+    {
+        Debug.Log("You have clicked the button!");
     }
 }
