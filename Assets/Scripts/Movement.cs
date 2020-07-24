@@ -5,6 +5,8 @@ using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class Movement : MonoBehaviour {
+
+    // It's used to set isGroundFalse i guess
     [SerializeField]
     private LayerMask platformsLayerMask;
 
@@ -45,16 +47,15 @@ public class Movement : MonoBehaviour {
     private void Start()
     {
         isRunning = false;
-        rb = transform.GetComponent<Rigidbody2D>();
         isRotated = false;
+
+        rb = transform.GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
 
+        // Default physics value that need to be applied after climbing
         oldGravity = rb.gravityScale;
         oldMass = rb.mass;
-
-        // Set climbButtonFalseByDefault
-        climbButton.GetComponent<ClimbuttonHandler>().gameObject.SetActive(true);
 
     }
 
@@ -147,11 +148,11 @@ public class Movement : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(false);
-       // climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(true);
+        jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(false);
+        //climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(true);
 
         
-        if (collision.gameObject.tag == "Stairs"  )
+        if (collision.gameObject.tag == "Stairs")
         {
             
             canClimb = true;
@@ -162,10 +163,8 @@ public class Movement : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(true);
+        jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(true);
         //climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(false);
-
-        //climbButton.GetComponent<ClimbuttonHandler>().gameObject.SetActive(false);
         
         canClimb = false;
         Debug.Log("Exited Stairs");

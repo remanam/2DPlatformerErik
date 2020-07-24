@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class JumpButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpHandler {
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log("Pressed Jump");
         isJump = true;
     }
 

@@ -9,6 +9,8 @@ public class ClimbuttonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public void OnPointerDown(PointerEventData eventData)
     {
         isClimb = true;
+        Debug.Log("Climb Button pressed!");
+        Debug.Log(isClimb);
     }
     
 
@@ -21,7 +23,6 @@ public class ClimbuttonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     public bool isClimb = false;
 
-    public GameObject _object;
     public Button btn;
 
     
