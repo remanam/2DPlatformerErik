@@ -68,7 +68,6 @@ public class Movement : MonoBehaviour {
 
         ps.Stop();
 
-        
 
         climb = climbButton.GetComponent<ClimbuttonHandler>().isClimb;
 
@@ -84,8 +83,6 @@ public class Movement : MonoBehaviour {
         if (right || Input.GetKey(KeyCode.D))
         {
             moveRight();
-
-
 
         }
         else if (left || Input.GetKey(KeyCode.A))
@@ -104,7 +101,6 @@ public class Movement : MonoBehaviour {
         {
             transform.position -= new Vector3(transform.position.x, transform.position.y * Time.deltaTime * fallSpeed, transform.position.z);
         }*/
-
 
         if (attackButton.GetComponent<AttackButtonHandler>().isAttacking == true) {
             isAtacking = true;
@@ -148,15 +144,12 @@ public class Movement : MonoBehaviour {
         }
 
 
-
         if (!isGrounded())
         {
             anim.SetBool("isJumping", true);       
-
         }
         else { 
-            anim.SetBool("isJumping", false);
-           
+            anim.SetBool("isJumping", false);     
         }
 
 
