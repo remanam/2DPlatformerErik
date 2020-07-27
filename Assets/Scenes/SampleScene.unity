@@ -19218,9 +19218,10 @@ MonoBehaviour:
   platformsLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  speed: 1
+  ps: {fileID: 1680216825}
+  speed: 4.5
   jumpVelocity: 15
-  climbSpeed: 98
+  climbSpeed: 1
   rightButton: {fileID: 2054407044}
   leftButton: {fileID: 1842182756}
   jumpButton: {fileID: 887348048}
@@ -19263,8 +19264,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 201817903
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: db94c606af9dbe94199709eee6db91b9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -21813,7 +21814,7 @@ GameObject:
   - component: {fileID: 1680216825}
   - component: {fileID: 1680216824}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: LandingParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21907,13 +21908,13 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680216822}
   serializedVersion: 6
-  lengthInSec: 5
-  simulationSpeed: 1
+  lengthInSec: 0.3
+  simulationSpeed: 18
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -22151,8 +22152,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.22
-      minScalar: 1
+      scalar: 0.21
+      minScalar: 0.09
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -22526,15 +22527,15 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 5
+    type: 0
     angle: 25
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0.32, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1.15, y: 0, z: 1}
+    m_Scale: {x: 0.09, y: 0, z: 0.33}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -22670,8 +22671,8 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 360
-      mode: 0
+      value: 180
+      mode: 3
       spread: 0
       speed:
         serializedVersion: 2
@@ -22732,7 +22733,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 150
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -23171,7 +23172,7 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 1, b: 1, a: 0}
+        key1: {r: 0.8119916, g: 0.8490566, b: 0.3155927, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -23408,7 +23409,7 @@ ParticleSystem:
     y:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.23
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -24209,7 +24210,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    inWorldSpace: 0
+    inWorldSpace: 1
     randomizePerFrame: 0
   ExternalForcesModule:
     serializedVersion: 2
@@ -24549,7 +24550,7 @@ ParticleSystem:
     strength:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.63
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -24602,7 +24603,7 @@ ParticleSystem:
     strengthY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 1.73
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -24715,7 +24716,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -30361,7 +30362,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2030339353}
   - component: {fileID: 2030339352}
-  - component: {fileID: 2030339354}
   m_Layer: 0
   m_Name: TX Village Props Crate Large
   m_TagString: Untagged
@@ -30434,27 +30434,6 @@ Transform:
   m_Father: {fileID: 1781934842}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &2030339354
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030339351}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 2
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!1 &2032130832
 GameObject:
   m_ObjectHideFlags: 0
