@@ -11587,6 +11587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0712a90243e377a4a93b0c91cc04ff99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1471445709}
   isJump: 0
   _object: {fileID: 887348048}
 --- !u!1 &888559289
@@ -19222,6 +19223,8 @@ MonoBehaviour:
   speed: 4.5
   jumpVelocity: 15
   climbSpeed: 1
+  fallSpeed: 0.5
+  playLanding: 0
   rightButton: {fileID: 2054407044}
   leftButton: {fileID: 1842182756}
   jumpButton: {fileID: 887348048}
@@ -19310,7 +19313,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.020316362, y: 0.07719511}
+  m_Offset: {x: -0.024346992, y: 0.07719511}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -19321,7 +19324,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7444043, y: 1.2392099}
+  m_Size: {x: 0.70409477, y: 1.2392099}
   m_EdgeRadius: 0
 --- !u!50 &1471445715
 Rigidbody2D:
