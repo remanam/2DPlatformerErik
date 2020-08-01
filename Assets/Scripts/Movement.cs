@@ -2,12 +2,18 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour {
 
     // It's used to set isGroundFalse i guess
     [SerializeField]
     private LayerMask platformsLayerMask;
+
+    [SerializeField]
+    private LevelLoader levelLoader;
+
+
 
     [SerializeField]
     private ParticleSystem ps;
@@ -42,6 +48,8 @@ public class Movement : MonoBehaviour {
     private Rigidbody2D rb;
     private Animator anim;
     private BoxCollider2D boxCollider2D;
+
+    // Attach buttons object to access variables
     public GameObject rightButton;
     public GameObject leftButton;
     public GameObject jumpButton;
@@ -97,10 +105,6 @@ public class Movement : MonoBehaviour {
             anim.SetBool("isRunning", isRunning);
         }
 
-/*        if (!isGrounded())
-        {
-            transform.position -= new Vector3(transform.position.x, transform.position.y * Time.deltaTime * fallSpeed, transform.position.z);
-        }*/
 
         if (attackButton.GetComponent<AttackButtonHandler>().isAttacking == true) {
             isAtacking = true;
@@ -122,13 +126,23 @@ public class Movement : MonoBehaviour {
                 rb.mass = 0;
                 transform.position = new Vector3(transform.position.x, transform.position.y + climbSpeed * 0.1f, transform.position.z);
 
-            }
-            else {
-                 rb.gravityScale = oldGravity;
-                 rb.mass = oldMass;
-            }
+        }
+        else 
+        {
+             rb.gravityScale = oldGravity;
+             rb.mass = oldMass;
+         }
+
+        if (playLanding && isGrounded()) {
+            Debug.Log("Landing particle played");
+            playLanding = false;
+            ps.Play();
+        }
+
+
 
     }
+
 
     private void Update()
     {
@@ -150,14 +164,6 @@ public class Movement : MonoBehaviour {
         }
         else { 
             anim.SetBool("isJumping", false);     
-        }
-
-
-        if (playLanding && isGrounded())
-        {  
-            Debug.Log("Landing particle played");
-            playLanding = false;
-            ps.Play();
         }
 
     }
@@ -207,7 +213,6 @@ public class Movement : MonoBehaviour {
         anim.SetBool("isRunning", isRunning);
     }
 
-
     private void moveLeft()
     {
         if (!isRotated) {
@@ -218,7 +223,6 @@ public class Movement : MonoBehaviour {
         transform.position = new Vector3(transform.position.x - speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
 
         //rb.MovePosition(new Vector2((transform.position.x - speed * Time.fixedDeltaTime), transform.position.y));
-
         //rb.AddForce(Vector2.left * speed, ForceMode2D.Force );
 
         isRunning = true;
