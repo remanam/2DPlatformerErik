@@ -10,10 +10,6 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     private LayerMask platformsLayerMask;
 
-    [SerializeField]
-    private LevelLoader levelLoader;
-
-
 
     [SerializeField]
     private ParticleSystem ps;
@@ -39,6 +35,8 @@ public class Movement : MonoBehaviour {
     private bool left; // if moving left
     private bool jump; // if Jumping
     private bool climb; // If climbing
+
+    private bool showLandingParticle;
     public bool playLanding = false;
 
 
@@ -133,11 +131,7 @@ public class Movement : MonoBehaviour {
              rb.mass = oldMass;
          }
 
-        if (playLanding && isGrounded()) {
-            Debug.Log("Landing particle played");
-            playLanding = false;
-            ps.Play();
-        }
+
 
 
 
@@ -166,6 +160,12 @@ public class Movement : MonoBehaviour {
             anim.SetBool("isJumping", false);     
         }
 
+        if (playLanding && isGrounded() ) {
+            Debug.Log("Landing particle played");
+            playLanding = false;
+            ps.Play();
+        }
+
     }
 
 
@@ -182,6 +182,8 @@ public class Movement : MonoBehaviour {
             Debug.Log("Entered Stairs");
             Debug.Log(canClimb);
         }
+
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -235,7 +237,14 @@ public class Movement : MonoBehaviour {
             boxCollider2D.bounds.size, 0f, Vector2.down, .1f, platformsLayerMask);
         // Debug.Log(raycastHit2d.collider);
         //Debug.DrawRay(transform.position, Vector3.down * 2, Color.green);
-        return raycastHit2d.collider != null;
+        if (raycastHit2d.collider != null) {
+            return true;     
+        }
+        else {
+            return false;
+            
+        }
+            
     }
 
 }
