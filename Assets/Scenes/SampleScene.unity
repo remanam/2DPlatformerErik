@@ -24225,9 +24225,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   ps: {fileID: 1857695444}
-  speed: 21
+  speed: 23
   jumpVelocity: 15
   climbSpeed: 1
+  maxVelocity: 7
   fallSpeed: 0.5
   playLanding: 0
   rightButton: {fileID: 2054407044}
