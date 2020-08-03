@@ -20,6 +20,9 @@ public class Movement : MonoBehaviour {
     public float climbSpeed = 2f;
 
     [SerializeField]
+    private float maxVelocity = 15f;
+
+    [SerializeField]
     private float fallSpeed = 0.5f;
     
 
@@ -82,24 +85,30 @@ public class Movement : MonoBehaviour {
 
     void FixedUpdate()
     {
+        // bool which checking if movement buttons pressed
         right = rightButton.GetComponent<RightButtonHandler>().isMovingRight;
-
         left = leftButton.GetComponent<LeftButtonHandler>().isMovingLeft;
 
-        if (right || Input.GetKey(KeyCode.D))
+        if (right && rb.velocity.x <= maxVelocity || Input.GetKey(KeyCode.D) && rb.velocity.x <= maxVelocity)
         {
-            moveRight();
-
+            moveRight(); // move right function
         }
-        else if (left || Input.GetKey(KeyCode.A))
+        else if (left && rb.velocity.x <= maxVelocity || Input.GetKey(KeyCode.A) && rb.velocity.x >= -maxVelocity)
         {
 
             moveLeft(); //move left function
-
         }
-        else
+        else 
         {
             isRunning = false;
+            anim.SetBool("isRunning", isRunning);
+        }
+
+        if (right || Input.GetKey(KeyCode.D)) {
+            isRunning = true;
+            anim.SetBool("isRunning", isRunning);
+        }else if (left || Input.GetKey(KeyCode.A)) {
+            isRunning = true;
             anim.SetBool("isRunning", isRunning);
         }
 
@@ -130,9 +139,6 @@ public class Movement : MonoBehaviour {
              rb.gravityScale = oldGravity;
              rb.mass = oldMass;
          }
-
-
-
 
 
     }
@@ -206,13 +212,16 @@ public class Movement : MonoBehaviour {
             transform.Rotate(0, 180, 0, Space.Self);
             Debug.Log("Rotating Right");
         }
-        transform.position = new Vector3(transform.position.x + speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
+        //transform.position = new Vector3(transform.position.x + speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
         //rb.MovePosition(new Vector2((transform.position.x + speed * Time.fixedDeltaTime), transform.position.y));
 
-        //rb.AddForce(Vector2.right * speed, ForceMode2D.Force);
+        rb.AddForce(Vector2.right * speed);
+        rb.AddForce(Vector2.up * speed);
 
-        isRunning = true;
-        anim.SetBool("isRunning", isRunning);
+        
+
+        //isRunning = true;
+        //anim.SetBool("isRunning", isRunning);
     }
 
     private void moveLeft()
@@ -222,13 +231,17 @@ public class Movement : MonoBehaviour {
             transform.Rotate(0, -180, 0, Space.Self);
             Debug.Log("Rotating Left");
         }
-        transform.position = new Vector3(transform.position.x - speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
+        //transform.position = new Vector3(transform.position.x - speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
 
         //rb.MovePosition(new Vector2((transform.position.x - speed * Time.fixedDeltaTime), transform.position.y));
-        //rb.AddForce(Vector2.left * speed, ForceMode2D.Force );
 
-        isRunning = true;
-        anim.SetBool("isRunning", isRunning);
+        rb.AddForce(Vector2.left * speed);
+        rb.AddForce(Vector2.up  * speed);
+
+
+
+        //isRunning = true;
+        //anim.SetBool("isRunning", isRunning);
     }
 
     private bool isGrounded()
