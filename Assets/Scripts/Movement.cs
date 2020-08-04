@@ -93,7 +93,7 @@ public class Movement : MonoBehaviour {
         {
             moveRight(); // move right function
         }
-        else if (left && rb.velocity.x <= maxVelocity || Input.GetKey(KeyCode.A) && rb.velocity.x >= -maxVelocity)
+        else if (left && rb.velocity.x >= -maxVelocity || Input.GetKey(KeyCode.A) && rb.velocity.x >= -maxVelocity)
         {
 
             moveLeft(); //move left function
@@ -129,15 +129,16 @@ public class Movement : MonoBehaviour {
                 Debug.Log(climb);
                 Debug.Log("Going Up");
 
-                rb.gravityScale = 0;
-                rb.mass = 0;
-                transform.position = new Vector3(transform.position.x, transform.position.y + climbSpeed * 0.1f, transform.position.z);
-
+                //rb.gravityScale = 0;
+                //rb.mass = 0;
+                //transform.position = new Vector3(transform.position.x, transform.position.y + climbSpeed * 0.1f, transform.position.z);
+                
+                rb.AddForce(Vector2.up * climbSpeed);
         }
         else 
         {
-             rb.gravityScale = oldGravity;
-             rb.mass = oldMass;
+             //rb.gravityScale = oldGravity;
+             //rb.mass = oldMass;
          }
 
 

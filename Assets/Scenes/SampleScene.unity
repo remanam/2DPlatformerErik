@@ -24227,7 +24227,7 @@ MonoBehaviour:
   ps: {fileID: 1857695444}
   speed: 23
   jumpVelocity: 15
-  climbSpeed: 1
+  climbSpeed: 55
   maxVelocity: 7
   fallSpeed: 0.5
   playLanding: 0
