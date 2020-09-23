@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -24,8 +25,9 @@ public class Movement : MonoBehaviour {
 
     [SerializeField]
     private float fallSpeed = 0.5f;
-    
 
+
+    bool isCollideToSomething = false;
 
     private bool isRunning;
     private bool isJumping;
@@ -64,6 +66,11 @@ public class Movement : MonoBehaviour {
 
     private void Start()
     {
+        // bool which checking if movement buttons pressed
+        right = rightButton.GetComponent<RightButtonHandler>().isMovingRight;
+        left = leftButton.GetComponent<LeftButtonHandler>().isMovingLeft;
+        jump = jumpButton.GetComponent<JumpButtonHandler>().isJump;
+
         isRunning = false;
         isRotated = false;
 
@@ -85,34 +92,51 @@ public class Movement : MonoBehaviour {
 
     void FixedUpdate()
     {
-        // bool which checking if movement buttons pressed
         right = rightButton.GetComponent<RightButtonHandler>().isMovingRight;
         left = leftButton.GetComponent<LeftButtonHandler>().isMovingLeft;
+        jump = jumpButton.GetComponent<JumpButtonHandler>().isJump;
 
-        if (right && rb.velocity.x <= maxVelocity || Input.GetKey(KeyCode.D) && rb.velocity.x <= maxVelocity)
-        {
-            moveRight(); // move right function
+
+        HorizontalMovementInput();
+        print(rb.velocity.x);
+
+        RunAnimation();
+        AtackAnimation();
+
+        ClimbMove();
+        JumpMove();
+    }
+
+
+
+    private void Update()
+    {
+        
+
+    }
+
+
+
+    private void ClimbMove()
+    {
+        if (canClimb && climbButton.GetComponent<ClimbuttonHandler>().isClimb) {
+            Debug.Log(climb);
+            Debug.Log("Going Up");
+
+            //rb.gravityScale = 0;
+            //rb.mass = 0;
+            transform.position = new Vector3(transform.position.x, transform.position.y + climbSpeed * Time.deltaTime, transform.position.z);
+
+            //rb.AddForce(Vector2.up * climbSpeed);
         }
-        else if (left && rb.velocity.x >= -maxVelocity || Input.GetKey(KeyCode.A) && rb.velocity.x >= -maxVelocity)
-        {
-
-            moveLeft(); //move left function
+        else {
+            //rb.gravityScale = oldGravity;
+            //rb.mass = oldMass;
         }
-        else 
-        {
-            isRunning = false;
-            anim.SetBool("isRunning", isRunning);
-        }
+    }
 
-        if (right || Input.GetKey(KeyCode.D)) {
-            isRunning = true;
-            anim.SetBool("isRunning", isRunning);
-        }else if (left || Input.GetKey(KeyCode.A)) {
-            isRunning = true;
-            anim.SetBool("isRunning", isRunning);
-        }
-
-
+    private void AtackAnimation()
+    {
         if (attackButton.GetComponent<AttackButtonHandler>().isAttacking == true) {
             isAtacking = true;
             anim.SetBool("isAtacking", isAtacking);
@@ -122,57 +146,20 @@ public class Movement : MonoBehaviour {
             isAtacking = false;
             anim.SetBool("isAtacking", isAtacking);
         }
-
-
-        if (canClimb && climbButton.GetComponent<ClimbuttonHandler>().isClimb)
-        {
-                Debug.Log(climb);
-                Debug.Log("Going Up");
-
-                //rb.gravityScale = 0;
-                //rb.mass = 0;
-                //transform.position = new Vector3(transform.position.x, transform.position.y + climbSpeed * 0.1f, transform.position.z);
-                
-                rb.AddForce(Vector2.up * climbSpeed);
-        }
-        else 
-        {
-             //rb.gravityScale = oldGravity;
-             //rb.mass = oldMass;
-         }
-
-
     }
 
 
-    private void Update()
+
+    private void RunAnimation()
     {
-
-        jump = jumpButton.GetComponent<JumpButtonHandler>().isJump;
-
-
-        if ((isGrounded() && jump) || (isGrounded() && Input.GetKey(KeyCode.Space)))
-        {
-            Debug.Log("Pressed Jump");
-            playLanding = true;
-            rb.velocity = Vector2.up * jumpVelocity;
+        if (right || Input.GetKey(KeyCode.D)) {
+            isRunning = true;
+            anim.SetBool("isRunning", isRunning);
         }
-
-
-        if (!isGrounded())
-        {
-            anim.SetBool("isJumping", true);       
+        else if (left || Input.GetKey(KeyCode.A)) {
+            isRunning = true;
+            anim.SetBool("isRunning", isRunning);
         }
-        else { 
-            anim.SetBool("isJumping", false);     
-        }
-
-        if (playLanding && isGrounded() ) {
-            Debug.Log("Landing particle played");
-            playLanding = false;
-            ps.Play();
-        }
-
     }
 
 
@@ -180,11 +167,9 @@ public class Movement : MonoBehaviour {
     {
         jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(false);
         //climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(true);
-
         
         if (collision.gameObject.tag == "Stairs")
-        {
-            
+        {         
             canClimb = true;
             Debug.Log("Entered Stairs");
             Debug.Log(canClimb);
@@ -206,6 +191,47 @@ public class Movement : MonoBehaviour {
         rb.mass = oldMass;
     }
 
+    private void JumpMove()
+    {
+        if ((isGrounded() && jump) || (isGrounded() && Input.GetKey(KeyCode.Space))) {
+            Debug.Log("Pressed Jump");
+            rb.velocity = Vector2.up * jumpVelocity;
+
+            //rb.MovePosition(new Vector2(transform.position.x, transform.position.y + jumpVelocity * Time.deltaTime));
+            //rb.AddForce(Vector2.up * jumpVelocity * Time.deltaTime, ForceMode2D.Impulse);
+        }
+
+        if (!isGrounded()) {
+            anim.SetBool("isJumping", true);
+
+        }
+        else {
+            anim.SetBool("isJumping", false);
+            playLanding = !playLanding;
+        }
+
+        if (playLanding && isGrounded()) {
+            playLanding = false;
+            ps.Play();
+        }
+    }
+
+    private void HorizontalMovementInput()
+    {
+        if (right || Input.GetKey(KeyCode.D)) {
+            moveRight(); // move right function
+        }
+        else if (left || Input.GetKey(KeyCode.A)) {
+
+            moveLeft(); //move left function
+        }
+        else {
+
+            isRunning = false;
+            anim.SetBool("isRunning", isRunning);
+        }
+    }
+
     private void moveRight()
     {
         if (isRotated) {
@@ -214,12 +240,11 @@ public class Movement : MonoBehaviour {
             Debug.Log("Rotating Right");
         }
         //transform.position = new Vector3(transform.position.x + speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
-        //rb.MovePosition(new Vector2((transform.position.x + speed * Time.fixedDeltaTime), transform.position.y));
 
-        rb.AddForce(Vector2.right * speed);
-        rb.AddForce(Vector2.up * speed);
+        if (rb.velocity.x <= maxVelocity)
+            rb.velocity = new Vector2(speed, rb.velocity.y); 
 
-        
+        //rb.MovePosition(new Vector2((transform.position.x + speed * Time.deltaTime), transform.position.y));
 
         //isRunning = true;
         //anim.SetBool("isRunning", isRunning);
@@ -234,10 +259,12 @@ public class Movement : MonoBehaviour {
         }
         //transform.position = new Vector3(transform.position.x - speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
 
+
+        if (rb.velocity.x <= maxVelocity)
+            rb.velocity = new Vector2(-speed, rb.velocity.y); ;
+
         //rb.MovePosition(new Vector2((transform.position.x - speed * Time.fixedDeltaTime), transform.position.y));
 
-        rb.AddForce(Vector2.left * speed);
-        rb.AddForce(Vector2.up  * speed);
 
 
 

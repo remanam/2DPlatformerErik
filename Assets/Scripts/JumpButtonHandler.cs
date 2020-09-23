@@ -22,7 +22,7 @@ public class JumpButtonHandler : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public void OnPointerUp(PointerEventData eventData)
     {
         isJump = false;
-        player.GetComponent<Movement>().playLanding = true;
+        player.GetComponent<Movement>().playLanding = false;
     }
 
     public bool isJump = false;

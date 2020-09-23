@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Stairs
+  - Obstacles
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,13 @@ TagManager:
     locked: 0
   - name: UI
     uniqueID: 566823657
+    locked: 0
+  - name: Player
+    uniqueID: 1476245991
+    locked: 0
+  - name: Platforms and Props
+    uniqueID: 3430257711
+    locked: 0
+  - name: New Layer
+    uniqueID: 20866015
     locked: 0
