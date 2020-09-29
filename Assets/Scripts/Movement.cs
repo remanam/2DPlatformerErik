@@ -86,6 +86,7 @@ public class Movement : MonoBehaviour {
 
 
         climb = climbButton.GetComponent<ClimbuttonHandler>().isClimb;
+        
 
         Vector2 velocityVector = rb.velocity;
     }
@@ -97,24 +98,22 @@ public class Movement : MonoBehaviour {
         jump = jumpButton.GetComponent<JumpButtonHandler>().isJump;
 
 
-        HorizontalMovementInput();
-        print(rb.velocity.x);
+        HorizontalMovement();
+        //print(rb.velocity.x);
 
-        RunAnimation();
+        //RunAnimation();
         AtackAnimation();
 
         ClimbMove();
-        JumpMove();
+        
     }
-
 
 
     private void Update()
     {
-        
+        JumpMove();
 
     }
-
 
 
     private void ClimbMove()
@@ -216,33 +215,46 @@ public class Movement : MonoBehaviour {
         }
     }
 
-    private void HorizontalMovementInput()
+    private void HorizontalMovement()
     {
+
+
         if (right || Input.GetKey(KeyCode.D)) {
-            moveRight(); // move right function
+            MoveRight(); // move right function
+            Debug.Log("MoveRight() Called");
         }
         else if (left || Input.GetKey(KeyCode.A)) {
 
-            moveLeft(); //move left function
+            MoveLeft(); //move left function
+            Debug.Log("MoveLeft() Called");
         }
         else {
 
             isRunning = false;
             anim.SetBool("isRunning", isRunning);
         }
+
+
     }
 
-    private void moveRight()
+    private void MovePlayerOnTransform()
+    {
+       
+    }
+
+    private void MoveRight()
     {
         if (isRotated) {
             isRotated = false;
             transform.Rotate(0, 180, 0, Space.Self);
             Debug.Log("Rotating Right");
         }
+        isRunning = true;
+        anim.SetBool("isRunning", isRunning);
         //transform.position = new Vector3(transform.position.x + speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
 
-        if (rb.velocity.x <= maxVelocity)
-            rb.velocity = new Vector2(speed, rb.velocity.y); 
+        var newPositionRight = new Vector2(speed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = newPositionRight;
 
         //rb.MovePosition(new Vector2((transform.position.x + speed * Time.deltaTime), transform.position.y));
 
@@ -250,7 +262,7 @@ public class Movement : MonoBehaviour {
         //anim.SetBool("isRunning", isRunning);
     }
 
-    private void moveLeft()
+    private void MoveLeft()
     {
         if (!isRotated) {
             isRotated = true;
@@ -258,10 +270,11 @@ public class Movement : MonoBehaviour {
             Debug.Log("Rotating Left");
         }
         //transform.position = new Vector3(transform.position.x - speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
+        isRunning = true;
+        anim.SetBool("isRunning", isRunning);
 
-
-        if (rb.velocity.x <= maxVelocity)
-            rb.velocity = new Vector2(-speed, rb.velocity.y); ;
+        var newPositionLeft = new Vector2(-speed * Time.deltaTime, rb.velocity.y);
+        rb.velocity = newPositionLeft; 
 
         //rb.MovePosition(new Vector2((transform.position.x - speed * Time.fixedDeltaTime), transform.position.y));
 
@@ -282,10 +295,22 @@ public class Movement : MonoBehaviour {
             return true;     
         }
         else {
-            return false;
-            
+            return false;          
+        }          
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "movingPlatform") {
+            gameObject.transform.parent = collision.transform;
         }
-            
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "movingPlatform") {
+            gameObject.transform.parent = null;
+        }
     }
 
 }
