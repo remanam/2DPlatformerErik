@@ -149,7 +149,7 @@ public class Movement : MonoBehaviour {
 
 
 
-    private void RunAnimation()
+    private void RunAnimation() 
     {
         if (right || Input.GetKey(KeyCode.D)) {
             isRunning = true;
@@ -172,6 +172,11 @@ public class Movement : MonoBehaviour {
             canClimb = true;
             Debug.Log("Entered Stairs");
             Debug.Log(canClimb);
+        }
+
+
+        if (collision.gameObject.tag == "Chest") {
+            collision.gameObject.GetComponent<Chest>().ChangeSprite();
         }
 
 
@@ -218,7 +223,6 @@ public class Movement : MonoBehaviour {
     private void HorizontalMovement()
     {
 
-
         if (right || Input.GetKey(KeyCode.D)) {
             MoveRight(); // move right function
             Debug.Log("MoveRight() Called");
@@ -235,11 +239,6 @@ public class Movement : MonoBehaviour {
         }
 
 
-    }
-
-    private void MovePlayerOnTransform()
-    {
-       
     }
 
     private void MoveRight()
@@ -299,11 +298,15 @@ public class Movement : MonoBehaviour {
         }          
     }
 
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "movingPlatform") {
             gameObject.transform.parent = collision.transform;
         }
+
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -312,5 +315,6 @@ public class Movement : MonoBehaviour {
             gameObject.transform.parent = null;
         }
     }
+
 
 }
