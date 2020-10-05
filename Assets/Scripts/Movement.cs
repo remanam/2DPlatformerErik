@@ -223,14 +223,14 @@ public class Movement : MonoBehaviour {
     private void HorizontalMovement()
     {
 
-        if (right || Input.GetKey(KeyCode.D)) {
+        if (right || Input.GetKey(KeyCode.D) ) {
             MoveRight(); // move right function
-            Debug.Log("MoveRight() Called");
+            Debug.Log(rb.velocity);
         }
         else if (left || Input.GetKey(KeyCode.A)) {
 
             MoveLeft(); //move left function
-            Debug.Log("MoveLeft() Called");
+            Debug.Log(rb.velocity);
         }
         else {
 
@@ -297,9 +297,6 @@ public class Movement : MonoBehaviour {
             return false;          
         }          
     }
-
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "movingPlatform") {

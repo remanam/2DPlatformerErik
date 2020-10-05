@@ -6,9 +6,17 @@ public class Chest : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
     public Sprite newSprite;
+    ParticleSystem ps;
+
+    private void Start()
+    {
+        ps = gameObject.GetComponent<ParticleSystem>();
+        ps.Stop();
+    }
     public void ChangeSprite()
     {
         spriteRenderer.sprite = newSprite;
+        ps.Play();
     }
     // Start is called before the first frame update
 
