@@ -161,10 +161,14 @@ public class Movement : MonoBehaviour {
         }
     }
 
+    public HealthScript healthScript;
+
+    bool ifGotDamage = false;  // Переменная проверяет получал ли я 1 раз урон от ловушек 
+    // То есть за один вход в тригер урон нужно получать 1 раз
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(false);
+        //jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(false);
         //climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(true);
         
         if (collision.gameObject.tag == "Stairs")
@@ -179,6 +183,14 @@ public class Movement : MonoBehaviour {
             collision.gameObject.GetComponent<Chest>().ChangeSprite();
         }
 
+        
+        if (collision.gameObject.tag == "Trap_torch" && ifGotDamage == false) {
+            
+            healthScript.GetDamage(1);
+            ifGotDamage = true;
+            Debug.Log("Get damage set to True");
+            anim.SetBool("isTakingDamage", true);
+        }
 
     }
 
@@ -193,6 +205,9 @@ public class Movement : MonoBehaviour {
 
         rb.gravityScale = oldGravity;
         rb.mass = oldMass;
+        ifGotDamage = false;
+
+        anim.SetBool("isTakingDamage", false);
     }
 
     private void JumpMove()
@@ -225,12 +240,11 @@ public class Movement : MonoBehaviour {
 
         if (right || Input.GetKey(KeyCode.D) ) {
             MoveRight(); // move right function
-            Debug.Log(rb.velocity);
+
         }
         else if (left || Input.GetKey(KeyCode.A)) {
 
             MoveLeft(); //move left function
-            Debug.Log(rb.velocity);
         }
         else {
 
@@ -287,7 +301,7 @@ public class Movement : MonoBehaviour {
     private bool isGrounded()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center,
-            boxCollider2D.bounds.size, 0f, Vector2.down, .1f, platformsLayerMask);
+            boxCollider2D.bounds.size, 0f, Vector2.down, .31f, platformsLayerMask);
         // Debug.Log(raycastHit2d.collider);
         //Debug.DrawRay(transform.position, Vector3.down * 2, Color.green);
         if (raycastHit2d.collider != null) {

@@ -8,6 +8,7 @@ TagManager:
   - Obstacles
   - movingPlatform
   - Chest
+  - Trap_torch
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - Platforms
   - Player
   - MovingPlatform
-  - 
+  - Traps
   - 
   - 
   - 
