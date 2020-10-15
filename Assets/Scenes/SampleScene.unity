@@ -30924,7 +30924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 781946709093371136, guid: e3e12ab45c66ad148b0d9b2f059e5a19, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.75
+      value: 1.7563
       objectReference: {fileID: 0}
     - target: {fileID: 781946709093371136, guid: e3e12ab45c66ad148b0d9b2f059e5a19, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30962,9 +30962,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 781946709093371136, guid: e3e12ab45c66ad148b0d9b2f059e5a19, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9832218
+      objectReference: {fileID: 0}
     - target: {fileID: 781946709093371164, guid: e3e12ab45c66ad148b0d9b2f059e5a19, type: 3}
       propertyPath: m_Name
       value: MovingTrap
+      objectReference: {fileID: 0}
+    - target: {fileID: 781946709093371166, guid: e3e12ab45c66ad148b0d9b2f059e5a19, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0015233755
+      objectReference: {fileID: 0}
+    - target: {fileID: 781946709093371166, guid: e3e12ab45c66ad148b0d9b2f059e5a19, type: 3}
+      propertyPath: m_Size.y
+      value: 0.734576
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3e12ab45c66ad148b0d9b2f059e5a19, type: 3}
