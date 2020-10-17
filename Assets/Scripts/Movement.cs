@@ -164,13 +164,28 @@ public class Movement : MonoBehaviour {
     public HealthScript healthScript;
 
     bool ifGotDamage = false;  // Переменная проверяет получал ли я 1 раз урон от ловушек 
-    // То есть за один вход в тригер урон нужно получать 1 раз
+                               // То есть за один вход в тригер урон нужно получать 1 раз
+
+    IEnumerator LoadLevel(string levelname)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        SceneManager.LoadScene(levelname);
+
+        //Load scene
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(false);
         //climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(true);
-        
+
+        if (collision.gameObject.tag == "ExitLevel")
+        {
+            StartCoroutine(LoadLevel("MainMenu"));
+        }
+
+
         if (collision.gameObject.tag == "Stairs")
         {         
             canClimb = true;

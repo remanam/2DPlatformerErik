@@ -9,6 +9,7 @@ TagManager:
   - movingPlatform
   - Chest
   - Trap_torch
+  - ExitLevel
   layers:
   - Default
   - TransparentFX
