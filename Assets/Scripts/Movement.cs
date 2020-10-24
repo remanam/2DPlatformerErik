@@ -208,8 +208,8 @@ public class Movement : MonoBehaviour {
         Debug.Log("Exited Stairs");
         Debug.Log(canClimb);
 
-        rb.gravityScale = oldGravity;
-        rb.mass = oldMass;
+        //rb.gravityScale = oldGravity;
+        //rb.mass = oldMass;
         ifGotDamage = false;
 
         anim.SetBool("isTakingDamage", false);
@@ -306,7 +306,7 @@ public class Movement : MonoBehaviour {
     private bool isGrounded()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center,
-            boxCollider2D.bounds.size, 0f, Vector2.down, .31f, platformsLayerMask);
+            boxCollider2D.bounds.size, 0f, Vector2.down, .2f, platformsLayerMask);
         // Debug.Log(raycastHit2d.collider);
         //Debug.DrawRay(transform.position, Vector3.down * 2, Color.green);
         if (raycastHit2d.collider != null) {
