@@ -17,6 +17,7 @@ public class Chest : MonoBehaviour
     {
         spriteRenderer.sprite = newSprite;
         ps.Play();
+        gameObject.GetComponent<AudioSource>().Play();
     }
     // Start is called before the first frame update
 

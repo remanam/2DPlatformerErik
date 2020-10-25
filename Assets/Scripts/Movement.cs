@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     private LayerMask platformsLayerMask;
 
+    public HealthScript healthScript;
 
     [SerializeField]
     private ParticleSystem ps;
@@ -26,6 +27,7 @@ public class Movement : MonoBehaviour {
     [SerializeField]
     private float fallSpeed = 0.5f;
 
+    
 
     bool isCollideToSomething = false;
 
@@ -161,7 +163,7 @@ public class Movement : MonoBehaviour {
         }
     }
 
-    public HealthScript healthScript;
+
 
     bool ifGotDamage = false;  // Переменная проверяет получал ли я 1 раз урон от ловушек 
                                // То есть за один вход в тригер урон нужно получать 1 раз
