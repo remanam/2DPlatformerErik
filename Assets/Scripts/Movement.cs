@@ -33,7 +33,7 @@ public class Movement : MonoBehaviour {
 
     private bool isRunning;
     private bool isJumping;
-    private bool isAtacking;
+    private bool isAttacking;
 
     private bool isRotated;
     private bool canClimb;
@@ -80,10 +80,6 @@ public class Movement : MonoBehaviour {
         anim = GetComponent<Animator>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
 
-        // Default physics value that need to be applied after climbing
-        oldGravity = rb.gravityScale;
-        oldMass = rb.mass;
-
         ps.Stop();
 
 
@@ -104,7 +100,8 @@ public class Movement : MonoBehaviour {
         //print(rb.velocity.x);
 
         //RunAnimation();
-        AtackAnimation();
+        AtackHandle();
+        AttackAnimation();
 
         ClimbMove();
         
@@ -136,17 +133,54 @@ public class Movement : MonoBehaviour {
         }
     }
 
-    private void AtackAnimation()
+
+    public Transform attackPoint;
+    public LayerMask enemyLayer;
+    public float attackRange = 0.5f;
+
+    public int attackDamage = 1;
+
+    bool ifTookDamage = false; // Check if enemy got damage from one sword swing
+    float attackDelay = 0.5f; // Delay between attacks
+    float nextAttack;
+
+    private void AtackHandle()
+    {
+        if (attackButton.GetComponent<AttackButtonHandler>().isAttacking == true && Time.time > nextAttack) {
+
+            isAttacking = true;
+            anim.SetBool("isAtacking", isAttacking);
+
+            Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+       
+            foreach(Collider2D enemy in hitEnemies) {
+                if (ifTookDamage == false) {
+                    enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
+                    ifGotDamage = true;
+                }
+            }
+            nextAttack = Time.time + attackDelay; // Каждый одинаковый промежуток времени будет возможжность атаки 
+        }
+    }
+
+    void AttackAnimation()
     {
         if (attackButton.GetComponent<AttackButtonHandler>().isAttacking == true) {
-            isAtacking = true;
-            anim.SetBool("isAtacking", isAtacking);
-        }
-        else {
 
-            isAtacking = false;
-            anim.SetBool("isAtacking", isAtacking);
         }
+    }
+
+    void StopAttack()
+    {
+        anim.SetBool("isAtacking", false);
+    }
+
+    //Поможет видеть графически радиусы raycast и тд
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
 
@@ -259,7 +293,6 @@ public class Movement : MonoBehaviour {
             anim.SetBool("isRunning", isRunning);
         }
 
-
     }
 
     private void MoveRight()
@@ -297,9 +330,6 @@ public class Movement : MonoBehaviour {
         rb.velocity = newPositionLeft; 
 
         //rb.MovePosition(new Vector2((transform.position.x - speed * Time.fixedDeltaTime), transform.position.y));
-
-
-
 
         //isRunning = true;
         //anim.SetBool("isRunning", isRunning);
