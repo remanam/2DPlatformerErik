@@ -170,7 +170,7 @@ public class Movement : MonoBehaviour {
         }
     }
 
-    void StopAttack()
+    void StopAttack()// Called when Animation is finished
     {
         anim.SetBool("isAtacking", false);
     }
