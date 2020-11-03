@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -49,9 +50,14 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        gameObject.GetComponent<Animator>().SetBool("isDead", true);      
+        
+        gameObject.GetComponent<Animator>().SetBool("isDead", true);
+        for(int i = 1; i < 16 ; i++) {
+            transform.Rotate(0, 0, 1);
+        }
         StartCoroutine("DestroyEnemy");
     }
+
 
     IEnumerator  DestroyEnemy()
     {
@@ -63,31 +69,34 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         HorizontalMovement();
+        
     }
-
 
     bool needToGoRight = true;
     bool needToGoLeft = false;
     private void HorizontalMovement()
     {
-        if (goRight == true || Input.GetKey(KeyCode.RightArrow)) {
+        if (needToGoRight || Input.GetKey(KeyCode.RightArrow)) {
         //if (transform.position.x < Positions[1].x && needToGoRight) {
-            if (transform.position.x == Positions[1].x) {
+            if (transform.position.x >= Positions[1].x) {
+                Debug.Log("Changed to Left");
                 needToGoRight = false;
                 needToGoLeft = true;
             }
-            MoveRight(); // move right function
-            Debug.Log(rb.position);
+
+            if (transform.position.x < Positions[1].x)
+                MoveRight(); // move right function
         }
-        else if (goLeft == true || Input.GetKey(KeyCode.LeftArrow)) {
+        else if (needToGoLeft  || Input.GetKey(KeyCode.LeftArrow)) {
         //else if (transform.position.x > Positions[0].x && needToGoLeft) {
-            if (transform.position.x == Positions[0].x) {
+            if (transform.position.x <= Positions[0].x) {
+                Debug.Log("Changed to Right");
                 needToGoRight = true;
                 needToGoLeft = false;
             }
 
-            MoveLeft(); //move left function
-            Debug.Log("is Going left");
+            if (transform.position.x > Positions[0].x)
+                MoveLeft(); //move left function
         }
         else {
 
@@ -100,6 +109,7 @@ public class Enemy : MonoBehaviour
     {
         if (!isRotated) {
             isRotated = true;
+
             gameObject.transform.Rotate(0, -180, 0, Space.Self);
             Debug.Log("Rotating Left");
         }
