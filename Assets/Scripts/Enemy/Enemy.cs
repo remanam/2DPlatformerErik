@@ -153,19 +153,7 @@ public class Enemy : MonoBehaviour
         rb.velocity = newPositionLeft;
 
     }
-    // Function MoveLeft without moving, just animation handler
-    void MoveLeftAnimation()
-    {
-        if (!isRotated) {
-            isRotated = true;
 
-            gameObject.transform.Rotate(0, -180, 0, Space.Self);
-            //Debug.Log("Rotating Left");
-        }
-        isRunning = true;
-        enemyAnim.SetBool("isRunning", isRunning);
-
-    }
 
     private void MoveRight()
     {
@@ -184,13 +172,8 @@ public class Enemy : MonoBehaviour
 
     }
     // Function MoveRight without moving, just animation handler
-    void MoveRightAnimation()
+    void RunAnimation()
     {
-        if (isRotated) {
-            isRotated = false;
-            gameObject.transform.Rotate(0, 180, 0, Space.Self);
-            //Debug.Log("Rotating Right");
-        }
         isRunning = true;
         enemyAnim.SetBool("isRunning", isRunning);
     }
@@ -244,8 +227,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Vector3 enemyPos = transform.position;
-        Vector3 collisionPos = collision.transform.position;
+
         if (collision.gameObject.tag == "Player") {
             needToFollow = true;
 
@@ -256,6 +238,9 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
+        Vector3 enemyPos = transform.position;
+        Vector3 collisionPos = collision.transform.position;
+
         if (needToFollow && collision.gameObject.tag == "Player" ) {
 
             if (Vector3.Distance(transform.position, collision.transform.position) >= 1.2f) {
@@ -266,35 +251,32 @@ public class Enemy : MonoBehaviour
                 }
                 //Right animation + rotation towards player
                 if (needToGoRight) {
-                    bool ifRotatedonce1 = false;
 
-                    if (ifRotatedonce1 == false) {
-                        transform.rotation = collision.transform.rotation;
-                    }
-                    
-                    MoveRightAnimation();
+                    if (isRotated == true && enemyPos.x < collisionPos.x ) {
+
+                        transform.Rotate(0, 180, 0, Space.Self);
+                        isRotated = false;
+                    }                  
+                    RunAnimation();
                 }
                 // Left animaion + rotation toward player
                 if (needToGoLeft) {
-                    bool ifRotatedOnce2 = false;
 
-                    if (ifRotatedOnce2 == false) {
+                    if (isRotated == false && enemyPos.x > collisionPos.x ) {
 
-                        ifRotatedOnce2 = true;
-                        transform.rotation = collision.transform.rotation;
+                        transform.Rotate(0, -180, 0, Space.Self);
+                        isRotated = true;
+                        
                     }
-                    MoveLeftAnimation();
+                    RunAnimation();
                 }
-                rb.position = Vector2.MoveTowards(rb.position, collision.gameObject.transform.position, 0.01f * speed * Time.fixedDeltaTime);
-            }
+                rb.position = Vector2.MoveTowards(rb.position, collision.gameObject.transform.position, 0.011f * speed * Time.fixedDeltaTime);
 
-            if (Vector3.Distance(transform.position, collision.transform.position) < 1.2f) {
-
+            }else if (Vector3.Distance(transform.position, collision.transform.position) < 1.2f) {
                 
                 AttackHandle(collision.gameObject);
                 
             }
-
         }
     }
 
