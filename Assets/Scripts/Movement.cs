@@ -63,9 +63,6 @@ public class Movement : MonoBehaviour {
 
     Vector2 velocityVector;
 
-
-
-
     private void Start()
     {
         // bool which checking if movement buttons pressed
@@ -82,7 +79,6 @@ public class Movement : MonoBehaviour {
 
         ps.Stop();
 
-
         climb = climbButton.GetComponent<ClimbuttonHandler>().isClimb;
         
 
@@ -95,18 +91,15 @@ public class Movement : MonoBehaviour {
         left = leftButton.GetComponent<LeftButtonHandler>().isMovingLeft;
         jump = jumpButton.GetComponent<JumpButtonHandler>().isJump;
 
-
         HorizontalMovement();
         //print(rb.velocity.x);
 
         //RunAnimation();
         AtackHandle();
-        AttackAnimation();
 
         ClimbMove();
         
     }
-
 
     private void Update()
     {
@@ -140,7 +133,7 @@ public class Movement : MonoBehaviour {
 
     public int attackDamage = 1;
 
-    bool ifTookDamage = false; // Check if enemy got damage from one sword swing
+    //bool ifTookDamage = false; // Check if enemy got damage from one sword swing Кажется не нужно это вообще
     float attackDelay = 0.5f; // Delay between attacks
     float nextAttack;
 
@@ -152,21 +145,17 @@ public class Movement : MonoBehaviour {
             anim.SetBool("isAtacking", isAttacking);
 
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
-       
+
+            int i = 0; // Чтобы, если у врага найдётся 2 колайдера, урон нанёсся только один раз
             foreach(Collider2D enemy in hitEnemies) {
-                if (ifTookDamage == false) {
+                if (/*ifTookDamage == false &&*/ i == 0) {
+                    
                     enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
                     ifGotDamage = true;
+                    i = 1;
                 }
             }
             nextAttack = Time.time + attackDelay; // Каждый одинаковый промежуток времени будет возможжность атаки 
-        }
-    }
-
-    void AttackAnimation()
-    {
-        if (attackButton.GetComponent<AttackButtonHandler>().isAttacking == true) {
-
         }
     }
 
@@ -215,8 +204,8 @@ public class Movement : MonoBehaviour {
         if (collision.gameObject.tag == "Stairs")
         {         
             canClimb = true;
-            Debug.Log("Entered Stairs");
-            Debug.Log(canClimb);
+            //Debug.Log("Entered Stairs");
+            //Debug.Log(canClimb);
         }
 
 
@@ -224,14 +213,6 @@ public class Movement : MonoBehaviour {
             collision.gameObject.GetComponent<Chest>().ChangeSprite();
         }
 
-        
-        if (collision.gameObject.tag == "Trap_torch" && ifGotDamage == false) {
-            
-            healthScript.GetDamage(1);
-            ifGotDamage = true;
-            Debug.Log("Get damage set to True");
-            anim.SetBool("isTakingDamage", true);
-        }
 
     }
 
@@ -241,8 +222,8 @@ public class Movement : MonoBehaviour {
         //climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(false);
         
         canClimb = false;
-        Debug.Log("Exited Stairs");
-        Debug.Log(canClimb);
+        //Debug.Log("Exited Stairs");
+        //Debug.Log(canClimb);
 
         //rb.gravityScale = oldGravity;
         //rb.mass = oldMass;
@@ -254,7 +235,7 @@ public class Movement : MonoBehaviour {
     private void JumpMove()
     {
         if ((isGrounded() && jump) || (isGrounded() && Input.GetKey(KeyCode.Space))) {
-            Debug.Log("Pressed Jump");
+            //Debug.Log("Pressed Jump");
             rb.velocity = Vector2.up * jumpVelocity;
 
             //rb.MovePosition(new Vector2(transform.position.x, transform.position.y + jumpVelocity * Time.deltaTime));
@@ -300,7 +281,7 @@ public class Movement : MonoBehaviour {
         if (isRotated) {
             isRotated = false;
             transform.Rotate(0, 180, 0, Space.Self);
-            Debug.Log("Rotating Right");
+            //Debug.Log("Rotating Right");
         }
         isRunning = true;
         anim.SetBool("isRunning", isRunning);
@@ -320,7 +301,7 @@ public class Movement : MonoBehaviour {
         if (!isRotated) {
             isRotated = true;
             transform.Rotate(0, -180, 0, Space.Self);
-            Debug.Log("Rotating Left");
+            //Debug.Log("Rotating Left");
         }
         //transform.position = new Vector3(transform.position.x - speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
         isRunning = true;
@@ -362,6 +343,14 @@ public class Movement : MonoBehaviour {
         if (collision.gameObject.tag == "movingPlatform") {
             gameObject.transform.parent = null;
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        healthScript.GetDamage(damage);
+        ifGotDamage = true;
+        Debug.Log("Get damage set to True");
+        anim.SetBool("isTakingDamage", true);
     }
 
 
