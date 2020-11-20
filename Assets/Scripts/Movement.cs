@@ -145,6 +145,7 @@ public class Movement : MonoBehaviour {
             anim.SetBool("isAtacking", isAttacking);
 
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
+            
 
             int i = 0; // Чтобы, если у врага найдётся 2 колайдера, урон нанёсся только один раз
             foreach(Collider2D enemy in hitEnemies) {
