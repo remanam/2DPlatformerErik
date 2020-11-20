@@ -71,7 +71,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 399015712485301694}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.39, y: 0.63, z: 0}
+  m_LocalPosition: {x: 1.89, y: 0.53, z: 0}
   m_LocalScale: {x: 1.12167, y: 1.18046, z: 1.12167}
   m_Children: []
   m_Father: {fileID: 8492911008702688266}
@@ -231,7 +231,7 @@ MonoBehaviour:
   point2: {x: -18, y: 0, z: 0}
   patrolSpeed: 0
   attackPoint: {fileID: 4692178534606748421}
-  attackRange: 0.67
+  attackRange: 0.6
   attackDamage: 1
   playerLayer:
     serializedVersion: 2

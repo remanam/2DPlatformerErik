@@ -102,28 +102,29 @@ public class Enemy : MonoBehaviour
 
     private void HorizontalMovement()
     {
-        if (needToGoRight /*&& needToFollow == false*/ || Input.GetKey(KeyCode.RightArrow)) {
+        if (needToGoRight  || Input.GetKey(KeyCode.RightArrow)) {
 
-            if (needToFollow == false)
+            if (needToFollow == false) {
                 MoveRight();
 
-            if (transform.position.x >= point2.x) {
-                needToGoRight = false;
-                needToGoLeft = true;
-                //Debug.Log("Enemy changed to Left");
+                if (transform.position.x >= point2.x) {
+                    needToGoRight = false;
+                    needToGoLeft = true;
+                    //Debug.Log("Enemy changed to Left");
+                }
             }
 
-
         }
-        else if (needToGoLeft /*&& needToFollow == false*/ || Input.GetKey(KeyCode.LeftArrow)) {
+        else if (needToGoLeft  || Input.GetKey(KeyCode.LeftArrow)) {
 
-            if (needToFollow == false)
+            if (needToFollow == false) {
                 MoveLeft();
             
-            if (transform.position.x <= point1.x) {
-                needToGoRight = true;
-                needToGoLeft = false;
-                //Debug.Log("Enemy changed to Right");
+                if (transform.position.x <= point1.x) {
+                    needToGoRight = true;
+                    needToGoLeft = false;
+                    //Debug.Log("Enemy changed to Right");
+                }
             }
             
         }
@@ -132,7 +133,6 @@ public class Enemy : MonoBehaviour
             isRunning = false;
             enemyAnim.SetBool("isRunning", isRunning);
         }
-
         
     }
 
@@ -202,7 +202,7 @@ public class Enemy : MonoBehaviour
 
             int i = 0; // Чтобы, если у врага найдётся 2 колайдера, урон нанёсся только один раз
             foreach (Collider2D enemy in hitEnemies) {
-                if ( i == 0) {
+                if ( i == 0 && enemyAnim.GetBool("isDead") == false) {
 
                     player.GetComponent<Movement>().TakeDamage(attackDamage);
                     ifGotDamage = true;
@@ -243,33 +243,50 @@ public class Enemy : MonoBehaviour
 
         if (needToFollow && collision.gameObject.tag == "Player" ) {
 
+            //Right animation + rotation towards player
+            if (needToGoRight) {
+
+                if (isRotated == true /*&& enemyPos.x < collisionPos.x*/) {
+
+                    transform.Rotate(0, 180, 0, Space.Self);
+                    isRotated = false;
+
+                    
+                }
+
+                if (enemyPos.x > collisionPos.x) {
+                    needToGoRight = false;
+                    needToGoLeft = true;
+                }
+
+                RunAnimation();
+            }
+            // Left animaion + rotation toward player
+            if (needToGoLeft) {
+
+                if (isRotated == false /*&& enemyPos.x > collisionPos.x*/) {
+
+                    transform.Rotate(0, -180, 0, Space.Self);
+                    isRotated = true;
+
+                }
+
+                if (enemyPos.x < collisionPos.x) {
+                    needToGoRight = true;
+                    needToGoLeft = false;
+                }
+
+                RunAnimation();
+            }
+
+
             if (Vector3.Distance(transform.position, collision.transform.position) >= 1.2f) {
                 if (Time.fixedTime > nextTime) {
                     Debug.Log("needToGoRight = " + needToGoRight);
                     Debug.Log("needToGoLeft = " + needToGoLeft);
                     nextTime = Time.fixedTime + timeStep;
                 }
-                //Right animation + rotation towards player
-                if (needToGoRight) {
 
-                    if (isRotated == true && enemyPos.x < collisionPos.x ) {
-
-                        transform.Rotate(0, 180, 0, Space.Self);
-                        isRotated = false;
-                    }                  
-                    RunAnimation();
-                }
-                // Left animaion + rotation toward player
-                if (needToGoLeft) {
-
-                    if (isRotated == false && enemyPos.x > collisionPos.x ) {
-
-                        transform.Rotate(0, -180, 0, Space.Self);
-                        isRotated = true;
-                        
-                    }
-                    RunAnimation();
-                }
                 rb.position = Vector2.MoveTowards(rb.position, collision.gameObject.transform.position, 0.011f * speed * Time.fixedDeltaTime);
 
             }else if (Vector3.Distance(transform.position, collision.transform.position) < 1.2f) {
