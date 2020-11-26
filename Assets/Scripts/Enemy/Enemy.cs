@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour
         isRotated = false;
         transform.position = new Vector3(point1.x +0.01f, point1.y, point1.z);
 
-
         nextTime = Time.time + timeStep;
     }
 
@@ -81,12 +80,13 @@ public class Enemy : MonoBehaviour
         HorizontalMovement();
 
         //Debugging with delay
-/*        if (Time.fixedTime > nextTime) {
-            Debug.Log("needToGoRight = " + needToGoRight);
-            Debug.Log("needToGoLeft = " + needToGoLeft);
-            Debug.Log("needToFollow" + needToFollow);
-            nextTime = Time.fixedTime + timeStep;
-        }*/
+        /*        if (Time.fixedTime > nextTime) {
+                    Debug.Log("needToGoRight = " + needToGoRight);
+                    Debug.Log("needToGoLeft = " + needToGoLeft);
+                    Debug.Log("needToFollow" + needToFollow);
+                    nextTime = Time.fixedTime + timeStep;
+                }*/
+                
     }
 
     private void Update()

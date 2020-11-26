@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 8492911008702688268}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -23.69, y: 0.12, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.34, y: 0.37, z: 0.4}
   m_Children:
   - {fileID: 2060947788}
   - {fileID: 4692178534606748421}
@@ -225,13 +225,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 883383007}
   speed: 65
-  maxHealth: 5
+  maxHealth: 2
   timeStep: 0.9
   point1: {x: -20, y: 0, z: 0}
   point2: {x: -18, y: 0, z: 0}
   patrolSpeed: 0
   attackPoint: {fileID: 4692178534606748421}
-  attackRange: 0.6
+  attackRange: 0.5
   attackDamage: 1
   playerLayer:
     serializedVersion: 2

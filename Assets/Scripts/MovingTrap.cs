@@ -39,7 +39,7 @@ public class MovingTrap : MonoBehaviour
             // Rest of the code
             StartCoroutine(Reset());
 
-
+            
             collision.gameObject.GetComponent<Movement>().TakeDamage(damage);
         }
     }

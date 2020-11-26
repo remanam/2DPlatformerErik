@@ -132,8 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movePosition: {x: 0, y: 1.2, z: 0}
+  collisionSpeed: 0.3
   moveSpeed: 0.5
   moveProgress: 0
+  damage: 1
 --- !u!61 &2345974661502226426
 BoxCollider2D:
   m_ObjectHideFlags: 0

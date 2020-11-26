@@ -34,6 +34,7 @@ public class Movement : MonoBehaviour {
     private bool isRunning;
     private bool isJumping;
     private bool isAttacking;
+    private bool isTakingDamage;
 
     private bool isRotated;
     private bool canClimb;
@@ -61,6 +62,9 @@ public class Movement : MonoBehaviour {
     public GameObject climbButton;
     public GameObject attackButton;
 
+    public AudioSource attackSound;
+    public AudioSource getDamageSound;
+
     Vector2 velocityVector;
 
     private void Start()
@@ -80,7 +84,6 @@ public class Movement : MonoBehaviour {
         ps.Stop();
 
         climb = climbButton.GetComponent<ClimbuttonHandler>().isClimb;
-        
 
         Vector2 velocityVector = rb.velocity;
     }
@@ -98,6 +101,9 @@ public class Movement : MonoBehaviour {
         AtackHandle();
 
         ClimbMove();
+
+        if (isTakingDamage == true)
+            getDamageSound.Play();
         
     }
 
@@ -105,6 +111,12 @@ public class Movement : MonoBehaviour {
     {
         JumpMove();
 
+    }
+
+    IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isTakingDamage = false;
     }
 
 
@@ -142,6 +154,9 @@ public class Movement : MonoBehaviour {
         if (attackButton.GetComponent<AttackButtonHandler>().isAttacking == true && Time.time > nextAttack) {
 
             isAttacking = true;
+            if (isAttacking)
+                attackSound.Play();
+            
             anim.SetBool("isAtacking", isAttacking);
 
             Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayer);
@@ -187,12 +202,8 @@ public class Movement : MonoBehaviour {
         }
     }
 
-
-
     bool ifGotDamage = false;  // Переменная проверяет получал ли я 1 раз урон от ловушек 
                                // То есть за один вход в тригер урон нужно получать 1 раз
-
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -219,7 +230,7 @@ public class Movement : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(true);
+        //jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(true);
         //climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(false);
         
         canClimb = false;
@@ -230,7 +241,8 @@ public class Movement : MonoBehaviour {
         //rb.mass = oldMass;
         ifGotDamage = false;
 
-        anim.SetBool("isTakingDamage", false);
+        isTakingDamage = false;
+        anim.SetBool("isTakingDamage", isTakingDamage);
     }
 
     private void JumpMove()
@@ -348,10 +360,14 @@ public class Movement : MonoBehaviour {
 
     public void TakeDamage(int damage)
     {
+        
         healthScript.GetDamage(damage);
+        isTakingDamage = true;
+        StartCoroutine(Reset());
+        anim.SetBool("isTakingDamage", isTakingDamage);
         ifGotDamage = true;
         Debug.Log("Get damage set to True");
-        anim.SetBool("isTakingDamage", true);
+        
     }
 
 
