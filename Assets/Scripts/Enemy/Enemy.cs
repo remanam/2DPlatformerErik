@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 100;
     int currentHealth;
 
+    public Text textDamage;
+
 
     float nowTime;
 
@@ -38,6 +41,8 @@ public class Enemy : MonoBehaviour
         transform.position = new Vector3(point1.x +0.01f, point1.y, point1.z);
 
         nextTime = Time.time + timeStep;
+
+        textDamage = GetComponentInChildren<Text>();
     }
 
     public void TakeDamage(int damage)
@@ -45,6 +50,10 @@ public class Enemy : MonoBehaviour
         currentHealth -= damage;
         Debug.Log("Current health = " + currentHealth);
         //Play Hurt animation
+
+        Instantiate(textDamage);
+        textDamage.text = damage.ToString();
+
         gameObject.GetComponent<Animator>().SetBool("isTakingDamage", true);
 
         if (currentHealth <= 0) {

@@ -65,7 +65,6 @@ public class Movement : MonoBehaviour {
     public AudioSource attackSound;
     public AudioSource getDamageSound;
 
-    Vector2 velocityVector;
 
     private void Start()
     {
@@ -95,15 +94,12 @@ public class Movement : MonoBehaviour {
         jump = jumpButton.GetComponent<JumpButtonHandler>().isJump;
 
         HorizontalMovement();
-        //print(rb.velocity.x);
 
-        //RunAnimation();
         AtackHandle();
 
         ClimbMove();
 
-        if (isTakingDamage == true)
-            getDamageSound.Play();
+        getDamageSound.Play();
         
     }
 
@@ -113,11 +109,7 @@ public class Movement : MonoBehaviour {
 
     }
 
-    IEnumerator Reset()
-    {
-        yield return new WaitForSeconds(0.5f);
-        isTakingDamage = false;
-    }
+
 
 
     private void ClimbMove()
@@ -358,13 +350,23 @@ public class Movement : MonoBehaviour {
         }
     }
 
+    IEnumerator ResetTakingDamage()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isTakingDamage = false;
+        anim.SetBool("isTakingDamage", isTakingDamage);
+    }
+
     public void TakeDamage(int damage)
     {
         
         healthScript.GetDamage(damage);
         isTakingDamage = true;
-        StartCoroutine(Reset());
+        StartCoroutine(ResetTakingDamage());
         anim.SetBool("isTakingDamage", isTakingDamage);
+
+        getDamageSound.Play();
+
         ifGotDamage = true;
         Debug.Log("Get damage set to True");
         
