@@ -25,6 +25,8 @@ public class Enemy : MonoBehaviour
     int currentHealth;
 
     public Text textDamage;
+    public float YOffset_TakeDamage;
+    public float XOffset_TakeDamage;
 
 
     float nowTime;
@@ -47,18 +49,25 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+
         currentHealth -= damage;
+        if (currentHealth <= 0 ) {
+            Die();
+            
+        }
+
         Debug.Log("Current health = " + currentHealth);
         //Play Hurt animation
 
-        Instantiate(textDamage);
         textDamage.text = damage.ToString();
+        textDamage.transform.position = new Vector3(transform.position.x + XOffset_TakeDamage, transform.position.y + YOffset_TakeDamage, transform.position.z);
+        Instantiate(textDamage);
+
+        
 
         gameObject.GetComponent<Animator>().SetBool("isTakingDamage", true);
 
-        if (currentHealth <= 0) {
-            Die();
-        }
+
     }
 
     void StopTakeDamageAnimation()
