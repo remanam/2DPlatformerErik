@@ -158,9 +158,12 @@ public class Movement : MonoBehaviour {
             foreach(Collider2D enemy in hitEnemies) {
                 if (/*ifTookDamage == false &&*/ i == 0) {
                     
+                    if (enemy.GetComponent<Enemy>().currentHealth > 0) {
+
                     enemy.GetComponent<Enemy>().TakeDamage(attackDamage);
                     ifGotDamage = true;
                     i = 1;
+                    }
                 }
             }
             nextAttack = Time.time + attackDelay; // Каждый одинаковый промежуток времени будет возможжность атаки 

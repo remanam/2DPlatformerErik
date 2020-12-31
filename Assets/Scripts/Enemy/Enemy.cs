@@ -22,11 +22,10 @@ public class Enemy : MonoBehaviour
 
     public float speed;
     public int maxHealth = 100;
-    int currentHealth;
+    public int currentHealth;
 
     public Text textDamage;
-    public float YOffset_TakeDamage;
-    public float XOffset_TakeDamage;
+
 
 
     float nowTime;
@@ -58,14 +57,9 @@ public class Enemy : MonoBehaviour
 
         Debug.Log("Current health = " + currentHealth);
         //Play Hurt animation
-
-        textDamage.text = damage.ToString();
-        textDamage.transform.position = new Vector3(transform.position.x + XOffset_TakeDamage, transform.position.y + YOffset_TakeDamage, transform.position.z);
-        Instantiate(textDamage);
-
-        
-
         gameObject.GetComponent<Animator>().SetBool("isTakingDamage", true);
+
+        DamagePopup.Create(transform.position, 2);
 
 
     }
@@ -84,11 +78,12 @@ public class Enemy : MonoBehaviour
     {
 
         gameObject.GetComponent<Animator>().SetBool("isDead", true);
+        StartCoroutine("DestroyEnemy");
         for (int i = 1; i < 16; i++) {
             transform.Rotate(0, 0, 1);
         }
         //rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-        StartCoroutine("DestroyEnemy");
+        
     }
 
 
