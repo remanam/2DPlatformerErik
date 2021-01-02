@@ -327,7 +327,7 @@ public class Movement : MonoBehaviour {
     private bool isGrounded()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center,
-            boxCollider2D.bounds.size, 0f, Vector2.down, .2f, platformsLayerMask);
+            boxCollider2D.bounds.size, 0f, Vector2.down, .3f, platformsLayerMask);
         // Debug.Log(raycastHit2d.collider);
         //Debug.DrawRay(transform.position, Vector3.down * 2, Color.green);
         if (raycastHit2d.collider != null) {

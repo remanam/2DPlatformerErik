@@ -59,7 +59,8 @@ public class Enemy : MonoBehaviour
         //Play Hurt animation
         gameObject.GetComponent<Animator>().SetBool("isTakingDamage", true);
 
-        DamagePopup.Create(transform.position, 2);
+        // Показ уровна
+        DamagePopup.Create(transform.position + new Vector3(-0.3f , 0.5f, 0), 2);
 
 
     }
