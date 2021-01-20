@@ -14,9 +14,6 @@ public class Enemy : MonoBehaviour
     bool isRotated;
     bool isRunning;
 
-    bool goRight;
-    bool goLeft;
-
     bool needToGoRight = true;
     bool needToGoLeft = false;
 
@@ -93,26 +90,13 @@ public class Enemy : MonoBehaviour
     {
         HorizontalMovement();
 
-        //Debugging with delay
-        /*        if (Time.fixedTime > nextTime) {
-                    Debug.Log("needToGoRight = " + needToGoRight);
-                    Debug.Log("needToGoLeft = " + needToGoLeft);
-                    Debug.Log("needToFollow" + needToFollow);
-                    nextTime = Time.fixedTime + timeStep;
-                }*/
                 
-    }
-
-    private void Update()
-    {
-
     }
 
 
     public Vector3 point1;
     public Vector3 point2;
     public float patrolSpeed;
-
 
     private void HorizontalMovement()
     {
@@ -202,9 +186,9 @@ public class Enemy : MonoBehaviour
     public float nextAttack;
     public float attackDelay = 0.8f;
 
-    bool ifGotDamage = false;  // Переменная проверяет получал ли я 1 раз урон от ловушек 
+    bool ifGotDamage = false;  // Позволяет получать урон от ловушек раз в 0.5 сек
 
-    Vector3 distnaceToPlayer;// То есть за один вход в тригер урон нужно получать 1 раз
+    Vector3 distnaceToPlayer;
     private void AttackHandle(GameObject player)
     {
         if ( Time.time > nextAttack) {
@@ -219,7 +203,7 @@ public class Enemy : MonoBehaviour
                 if ( i == 0 && enemyAnim.GetBool("isDead") == false) {
 
                     player.GetComponent<Movement>().TakeDamage(attackDamage);
-                    ifGotDamage = true;
+
                     i = 1;
                 }
             }
@@ -252,66 +236,76 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Vector3 enemyPos = transform.position;
-        Vector3 collisionPos = collision.transform.position;
+
 
         if (needToFollow && collision.gameObject.tag == "Player" ) {
 
-            //Right animation + rotation towards player
-            if (needToGoRight) {
+            RunAnimationHandler(collision);
 
-                if (isRotated == true /*&& enemyPos.x < collisionPos.x*/) {
+            FollowAndAttackHandle(collision);
 
-                    transform.Rotate(0, 180, 0, Space.Self);
-                    isRotated = false;
-
-                    
-                }
-
-                if (enemyPos.x > collisionPos.x) {
-                    needToGoRight = false;
-                    needToGoLeft = true;
-                }
-
-                RunAnimation();
-            }
-            // Left animaion + rotation toward player
-            if (needToGoLeft) {
-
-                if (isRotated == false /*&& enemyPos.x > collisionPos.x*/) {
-
-                    transform.Rotate(0, -180, 0, Space.Self);
-                    isRotated = true;
-
-                }
-
-                if (enemyPos.x < collisionPos.x) {
-                    needToGoRight = true;
-                    needToGoLeft = false;
-                }
-
-                RunAnimation();
-            }
-
-
-            if (Vector3.Distance(transform.position, collision.transform.position) >= 1.2f) {
-                if (Time.fixedTime > nextTime) {
-                    Debug.Log("needToGoRight = " + needToGoRight);
-                    Debug.Log("needToGoLeft = " + needToGoLeft);
-                    nextTime = Time.fixedTime + timeStep;
-                }
-
-                rb.position = Vector2.MoveTowards(rb.position, collision.gameObject.transform.position, 0.011f * speed * Time.fixedDeltaTime);
-
-            }else if (Vector3.Distance(transform.position, collision.transform.position) < 1.2f) {
-                
-                AttackHandle(collision.gameObject);
-                
-            }
         }
     }
 
+    void RunAnimationHandler(Collider2D collision)
+    {
+        Vector3 enemyPos = transform.position;
+        Vector3 collisionPos = collision.transform.position;
+        //Right animation + rotation towards player
+        if (needToGoRight) {
 
+            if (isRotated == true /*&& enemyPos.x < collisionPos.x*/) {
+
+                transform.Rotate(0, 180, 0, Space.Self);
+                isRotated = false;
+
+
+            }
+
+            if (enemyPos.x > collisionPos.x) {
+                needToGoRight = false;
+                needToGoLeft = true;
+            }
+
+            RunAnimation();
+        }
+        // Left animaion + rotation toward player
+        if (needToGoLeft) {
+
+            if (isRotated == false /*&& enemyPos.x > collisionPos.x*/) {
+
+                transform.Rotate(0, -180, 0, Space.Self);
+                isRotated = true;
+
+            }
+
+            if (enemyPos.x < collisionPos.x) {
+                needToGoRight = true;
+                needToGoLeft = false;
+            }
+
+            RunAnimation();
+        }
+    }
+
+    void FollowAndAttackHandle(Collider2D collision)
+    {
+        if (Vector3.Distance(transform.position, collision.transform.position) >= 1.2f) {
+            if (Time.fixedTime > nextTime) {
+                Debug.Log("needToGoRight = " + needToGoRight);
+                Debug.Log("needToGoLeft = " + needToGoLeft);
+                nextTime = Time.fixedTime + timeStep;
+            }
+
+            rb.position = Vector2.MoveTowards(rb.position, collision.gameObject.transform.position, 0.011f * speed * Time.fixedDeltaTime);
+
+        }
+        else if (Vector3.Distance(transform.position, collision.transform.position) < 1.2f) {
+
+            AttackHandle(collision.gameObject);
+
+        }
+    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {

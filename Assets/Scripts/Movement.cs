@@ -48,9 +48,6 @@ public class Movement : MonoBehaviour {
     public bool playLanding = false;
 
 
-    private float oldMass;
-    private float oldGravity;
-
     private Rigidbody2D rb;
     private Animator anim;
     private BoxCollider2D boxCollider2D;
@@ -109,9 +106,6 @@ public class Movement : MonoBehaviour {
 
     }
 
-
-
-
     private void ClimbMove()
     {
         if (canClimb && climbButton.GetComponent<ClimbuttonHandler>().isClimb) {
@@ -156,7 +150,7 @@ public class Movement : MonoBehaviour {
 
             int i = 0; // Чтобы, если у врага найдётся 2 колайдера, урон нанёсся только один раз
             foreach(Collider2D enemy in hitEnemies) {
-                if (/*ifTookDamage == false &&*/ i == 0) {
+                if ( i == 0) {
                     
                     if (enemy.GetComponent<Enemy>().currentHealth > 0) {
 
@@ -202,24 +196,18 @@ public class Movement : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //jumpButton.GetComponent<JumpButtonHandler>().gameObject.SetActive(false);
-        //climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(true);
 
-
-
-
-        if (collision.gameObject.tag == "Stairs")
+/*        if (collision.gameObject.tag == "Stairs")
         {         
             canClimb = true;
-            //Debug.Log("Entered Stairs");
-            //Debug.Log(canClimb);
-        }
+            Debug.Log("Entered Stairs");
+            Debug.Log(canClimb);
+        }*/
 
 
         if (collision.gameObject.tag == "Chest") {
             collision.gameObject.GetComponent<Chest>().ChangeSprite();
         }
-
 
     }
 
@@ -229,11 +217,8 @@ public class Movement : MonoBehaviour {
         //climbButton.GetComponent<ClimbuttonHandler>().btn.gameObject.SetActive(false);
         
         canClimb = false;
-        //Debug.Log("Exited Stairs");
-        //Debug.Log(canClimb);
 
-        //rb.gravityScale = oldGravity;
-        //rb.mass = oldMass;
+
         ifGotDamage = false;
 
         isTakingDamage = false;
@@ -243,7 +228,6 @@ public class Movement : MonoBehaviour {
     private void JumpMove()
     {
         if ((isGrounded() && jump) || (isGrounded() && Input.GetKey(KeyCode.Space))) {
-            //Debug.Log("Pressed Jump");
             rb.velocity = Vector2.up * jumpVelocity;
 
             //rb.MovePosition(new Vector2(transform.position.x, transform.position.y + jumpVelocity * Time.deltaTime));
@@ -293,15 +277,10 @@ public class Movement : MonoBehaviour {
         }
         isRunning = true;
         anim.SetBool("isRunning", isRunning);
-        //transform.position = new Vector3(transform.position.x + speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
 
         var newPositionRight = new Vector2(speed * Time.deltaTime, rb.velocity.y);
         rb.velocity = newPositionRight;
 
-        //rb.MovePosition(new Vector2((transform.position.x + speed * Time.deltaTime), transform.position.y));
-
-        //isRunning = true;
-        //anim.SetBool("isRunning", isRunning);
     }
 
     private void MoveLeft()
@@ -311,25 +290,20 @@ public class Movement : MonoBehaviour {
             transform.Rotate(0, -180, 0, Space.Self);
             //Debug.Log("Rotating Left");
         }
-        //transform.position = new Vector3(transform.position.x - speed * Time.fixedDeltaTime, transform.position.y, transform.position.z);
+
         isRunning = true;
         anim.SetBool("isRunning", isRunning);
 
         var newPositionLeft = new Vector2(-speed * Time.deltaTime, rb.velocity.y);
         rb.velocity = newPositionLeft; 
 
-        //rb.MovePosition(new Vector2((transform.position.x - speed * Time.fixedDeltaTime), transform.position.y));
-
-        //isRunning = true;
-        //anim.SetBool("isRunning", isRunning);
     }
 
     private bool isGrounded()
     {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2D.bounds.center,
             boxCollider2D.bounds.size, 0f, Vector2.down, .3f, platformsLayerMask);
-        // Debug.Log(raycastHit2d.collider);
-        //Debug.DrawRay(transform.position, Vector3.down * 2, Color.green);
+
         if (raycastHit2d.collider != null) {
             return true;     
         }

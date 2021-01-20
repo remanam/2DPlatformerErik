@@ -22,14 +22,14 @@ public class LevelLoader : MonoBehaviour {
     {
 
         if (player.transform.position.y < -5 && needToCoroutine == true ) {
-            //StartCoroutine(LoadLevel("MainMenu"));
+
             StartCoroutine(LoadLevel("GameOver", 1f));
             playerAnimator.SetBool("isDead", true);
             needToCoroutine = false;
         }
 
         if (healthScript.GetComponent<HealthScript>().health <= 0 && needToCoroutine == true) {
-            //StartCoroutine(LoadLevel("MainMenu"));
+
             StartCoroutine(LoadLevel("GameOver", 1f));
             playerAnimator.SetBool("isDead", true);
             needToCoroutine = false;
